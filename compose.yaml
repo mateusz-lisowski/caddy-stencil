@@ -1,8 +1,8 @@
 services:
 
   caddy:
-    image: caddy-server
     build: .
+    image: caddy-server/caddy-reverse-proxy:latest
     restart: unless-stopped
     ports:
       - "80:80"
