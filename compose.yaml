@@ -1,0 +1,26 @@
+services:
+
+  caddy:
+    image: caddy-server
+    build: .
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    networks:
+      # Connect Caddy to the shared network
+      - proxy-network
+    volumes:
+      - caddy-data:/data
+      - caddy-config:/config
+
+networks:
+  # Reference the pre-existing external network
+  proxy-network:
+    name: caddy-proxy-network
+    external: true
+
+volumes:
+  caddy-data:
+  caddy-config:
