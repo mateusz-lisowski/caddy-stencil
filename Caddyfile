@@ -1,0 +1,27 @@
+# ~/caddy_stack/Caddyfile - HTTP only on port 8000
+
+# Define a site block listening explicitly on port 8000.
+# Using just the port ":8000" or "http://:8000" prevents automatic HTTPS.
+:80 {
+    # Log requests (optional, but useful for testing)
+    log {
+        output stdout # Log to standard output, visible via 'docker logs'
+        format console
+    }
+
+    # Enable compression (optional)
+    encode gzip zstd
+
+    # Reverse proxy all requests coming to port 8000
+    # to a backend service.
+    # IMPORTANT: Replace 'backend_service:port' with the actual
+    # hostname/IP and port of the service you want to proxy to.
+    # If using Docker Compose with a shared network, this would be
+    # the service name and internal port (e.g., service1_app:8000).
+    reverse_proxy django-test-deploy-app-app-1:8000
+}
+
+# You can add other HTTP-only site blocks if needed, like:
+# http://another-service.localhost {
+#    reverse_proxy another_app:3000
+# }
