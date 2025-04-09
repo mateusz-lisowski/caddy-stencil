@@ -1,7 +1,7 @@
 services:
 
   caddy:
-    build: .
+    build: ./caddy/
     image: caddy-stencil/caddy-reverse-proxy:latest
     restart: unless-stopped
     ports:
