@@ -16,7 +16,8 @@
     # hostname/IP and port of the service you want to proxy to.
     # If using Docker Compose with a shared network, this would be
     # the service name and internal port (e.g., service1_app:8000).
-    reverse_proxy backend_service:port
+    # Setup with example django-app-stencil project
+    reverse_proxy django-app-stencil-app-1:8000
 }
 
 # You can add other HTTP-only site blocks if needed, like:
