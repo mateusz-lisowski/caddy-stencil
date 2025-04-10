@@ -2,7 +2,6 @@ services:
 
   caddy:
     build: ./caddy/
-    image: caddy-stencil/caddy-reverse-proxy:latest
     restart: unless-stopped
     ports:
       - "80:80"
